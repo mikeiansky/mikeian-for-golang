@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = "";  // 替换为你的实际 Go Module 导入路径
+
+package openapi;
+
+// 定义一个 Person 消息
+message OpenApi {
+  string appId = 1;
+  string secret = 2;
+}

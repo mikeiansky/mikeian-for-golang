@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = "mikeian-for-golang/app/protobuf/city";  // 替换为你的实际 Go Module 导入路径
+
+package city;
+
+// 定义一个 Person 消息
+message City {
+  string name = 1;
+  string address = 2;
+}

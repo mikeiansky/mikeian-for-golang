@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = "mikeian-for-golang/internal/biz";  // 替换为你的实际 Go Module 导入路径
+
+package biz;
+
+// 定义一个 Person 消息
+message Biz {
+  int32 money = 1;
+  string name = 2;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option go_package = "";  // 替换为你的实际 Go Module 导入路径
+
+package api;
+
+// 定义一个 Person 消息
+message Api {
+  string createAction = 1;
+  string updateAction = 2;
+  string searchAction = 3;
+  string deleteAction = 4;
+}
