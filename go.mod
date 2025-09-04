@@ -6,6 +6,7 @@ require (
 	github.com/go-sql-driver/mysql v1.9.3
 	github.com/google/wire v0.7.0
 	github.com/redis/go-redis/v9 v9.12.1
+	google.golang.org/protobuf v1.36.8
 	gopkg.in/yaml.v2 v2.4.0
 )
 

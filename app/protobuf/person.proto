@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = "app/protobuf/person";  // 替换为你的实际 Go Module 导入路径
+
+package person;
+
+// 定义一个 Person 消息
+message Person {
+  string name = 1;
+  int32 age = 2;
+}
