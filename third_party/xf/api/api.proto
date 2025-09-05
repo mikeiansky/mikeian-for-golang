@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "";  // 替换为你的实际 Go Module 导入路径
+option go_package = "mikeian-for-golang/third_party/api";  // 替换为你的实际 Go Module 导入路径
 
 package api;
 

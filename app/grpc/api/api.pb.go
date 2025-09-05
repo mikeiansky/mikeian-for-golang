@@ -126,7 +126,7 @@ const file_app_grpc_api_api_proto_rawDesc = "" +
 	"HelloReply\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage2?\n" +
 	"\aGreeter\x124\n" +
-	"\bSayHello\x12\x13.proto.HelloRequest\x1a\x11.proto.HelloReply\"\x00B\x0eZ\fapp/grpc/apib\x06proto3"
+	"\bSayHello\x12\x13.proto.HelloRequest\x1a\x11.proto.HelloReply\"\x00B!Z\x1fmikeian-for-golang/app/grpc/apib\x06proto3"
 
 var (
 	file_app_grpc_api_api_proto_rawDescOnce sync.Once

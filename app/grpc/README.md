@@ -7,4 +7,4 @@
 - 安装 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 
 ## 生成代码
-- 在项目根目录下面执行protoc --go_out=.  --go-grpc_out=. .\app\grpc\api\api.proto
+- 在项目根目录下面执行protoc --go_out=paths=source_relative:./ --go-grpc_out=paths=source_relative:./ .\app\grpc\api\api.proto
