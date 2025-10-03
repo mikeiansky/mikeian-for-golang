@@ -6,5 +6,8 @@
 
 ## 命令
 在项目根目录环境下执行下面命令
-- protoc --go_out=paths=source_relative:./  .\app\protobuf\city\city.proto
-- protoc --go_out=paths=source_relative:./  .\app\protobuf\person\person.proto
+- protoc --go_out=paths=source_relative:./  ./app/protobuf/city/city.proto
+- protoc --go_out=paths=source_relative:./  ./app/protobuf/person/person.proto
+
+## 配置 --proto_path之后的影响
+-  protoc  --proto_path=./third_party --proto_path=./internal --proto_path=./app --go_out=paths=source_relative:./app/  ./app/protobuf/person/person.proto
