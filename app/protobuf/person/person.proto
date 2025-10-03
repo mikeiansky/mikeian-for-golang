@@ -5,6 +5,8 @@ option go_package = "mikeian-for-golang/app/protobuf/person";  // 替换为你�
 import "protobuf/city/city.proto";
 import "biz/biz.proto";
 import "openapi/openapi.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/wrappers.proto";
 
 package person;
 
@@ -15,4 +17,6 @@ message Person {
   city.City city = 3;
   biz.Biz biz = 4;
   openapi.OpenApi api = 5;
+  google.protobuf.Any any = 6;
+  google.protobuf.DoubleValue dv = 7;
 }

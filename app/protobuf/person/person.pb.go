@@ -9,6 +9,8 @@ package person
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	anypb "google.golang.org/protobuf/types/known/anypb"
+	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	city "mikeian-for-golang/app/protobuf/city"
 	biz "mikeian-for-golang/internal/biz"
 	openapi "mikeian-for-golang/third_party/openapi"
@@ -26,12 +28,14 @@ const (
 
 // 定义一个 Person 消息
 type Person struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Age           int32                  `protobuf:"varint,2,opt,name=age,proto3" json:"age,omitempty"`
-	City          *city.City             `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
-	Biz           *biz.Biz               `protobuf:"bytes,4,opt,name=biz,proto3" json:"biz,omitempty"`
-	Api           *openapi.OpenApi       `protobuf:"bytes,5,opt,name=api,proto3" json:"api,omitempty"`
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	Name          string                  `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Age           int32                   `protobuf:"varint,2,opt,name=age,proto3" json:"age,omitempty"`
+	City          *city.City              `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
+	Biz           *biz.Biz                `protobuf:"bytes,4,opt,name=biz,proto3" json:"biz,omitempty"`
+	Api           *openapi.OpenApi        `protobuf:"bytes,5,opt,name=api,proto3" json:"api,omitempty"`
+	Any           *anypb.Any              `protobuf:"bytes,6,opt,name=any,proto3" json:"any,omitempty"`
+	Dv            *wrapperspb.DoubleValue `protobuf:"bytes,7,opt,name=dv,proto3" json:"dv,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -101,18 +105,34 @@ func (x *Person) GetApi() *openapi.OpenApi {
 	return nil
 }
 
+func (x *Person) GetAny() *anypb.Any {
+	if x != nil {
+		return x.Any
+	}
+	return nil
+}
+
+func (x *Person) GetDv() *wrapperspb.DoubleValue {
+	if x != nil {
+		return x.Dv
+	}
+	return nil
+}
+
 var File_protobuf_person_person_proto protoreflect.FileDescriptor
 
 const file_protobuf_person_person_proto_rawDesc = "" +
 	"\n" +
-	"\x1cprotobuf/person/person.proto\x12\x06person\x1a\x18protobuf/city/city.proto\x1a\rbiz/biz.proto\x1a\x15openapi/openapi.proto\"\x8e\x01\n" +
+	"\x1cprotobuf/person/person.proto\x12\x06person\x1a\x18protobuf/city/city.proto\x1a\rbiz/biz.proto\x1a\x15openapi/openapi.proto\x1a\x19google/protobuf/any.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xe4\x01\n" +
 	"\x06Person\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x10\n" +
 	"\x03age\x18\x02 \x01(\x05R\x03age\x12\x1e\n" +
 	"\x04city\x18\x03 \x01(\v2\n" +
 	".city.CityR\x04city\x12\x1a\n" +
 	"\x03biz\x18\x04 \x01(\v2\b.biz.BizR\x03biz\x12\"\n" +
-	"\x03api\x18\x05 \x01(\v2\x10.openapi.OpenApiR\x03apiB(Z&mikeian-for-golang/app/protobuf/personb\x06proto3"
+	"\x03api\x18\x05 \x01(\v2\x10.openapi.OpenApiR\x03api\x12&\n" +
+	"\x03any\x18\x06 \x01(\v2\x14.google.protobuf.AnyR\x03any\x12,\n" +
+	"\x02dv\x18\a \x01(\v2\x1c.google.protobuf.DoubleValueR\x02dvB(Z&mikeian-for-golang/app/protobuf/personb\x06proto3"
 
 var (
 	file_protobuf_person_person_proto_rawDescOnce sync.Once
@@ -128,20 +148,24 @@ func file_protobuf_person_person_proto_rawDescGZIP() []byte {
 
 var file_protobuf_person_person_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_protobuf_person_person_proto_goTypes = []any{
-	(*Person)(nil),          // 0: person.Person
-	(*city.City)(nil),       // 1: city.City
-	(*biz.Biz)(nil),         // 2: biz.Biz
-	(*openapi.OpenApi)(nil), // 3: openapi.OpenApi
+	(*Person)(nil),                 // 0: person.Person
+	(*city.City)(nil),              // 1: city.City
+	(*biz.Biz)(nil),                // 2: biz.Biz
+	(*openapi.OpenApi)(nil),        // 3: openapi.OpenApi
+	(*anypb.Any)(nil),              // 4: google.protobuf.Any
+	(*wrapperspb.DoubleValue)(nil), // 5: google.protobuf.DoubleValue
 }
 var file_protobuf_person_person_proto_depIdxs = []int32{
 	1, // 0: person.Person.city:type_name -> city.City
 	2, // 1: person.Person.biz:type_name -> biz.Biz
 	3, // 2: person.Person.api:type_name -> openapi.OpenApi
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	4, // 3: person.Person.any:type_name -> google.protobuf.Any
+	5, // 4: person.Person.dv:type_name -> google.protobuf.DoubleValue
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_protobuf_person_person_proto_init() }
