@@ -13,13 +13,15 @@ import (
 
 func main() {
 	// 连接到 gRPC 服务端
-	conn, err := grpc.NewClient("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
-	if err != nil {
-		log.Fatalf("did not connect: %v", err)
-	}
+	//conn, err := grpc.NewClient("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	// other server
+	conn, err := grpc.NewClient("192.168.8.151:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	//if err != nil {
+	//	log.Fatalf("did not connect: %v", err)
+	//}
 	defer conn.Close()
 
-	c := api.NewGreeterClient(conn)
+	c := api.NewHelloServiceClient(conn)
 
 	// 从命令行参数获取 name，如果没有则默认为 "World"
 	name := "World"

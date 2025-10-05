@@ -11,7 +11,7 @@ import (
 
 // 实现 Greeter 服务
 type server struct {
-	api.UnimplementedGreeterServer // 必须嵌入，提供默认实现
+	api.UnimplementedHelloServiceServer // 必须嵌入，提供默认实现
 }
 
 // 实现 SayHello 方法
@@ -27,7 +27,7 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	api.RegisterGreeterServer(s, &server{})
+	api.RegisterHelloServiceServer(s, &server{})
 
 	log.Println("🟢 gRPC Server is running on :50051")
 	if err := s.Serve(lis); err != nil {
