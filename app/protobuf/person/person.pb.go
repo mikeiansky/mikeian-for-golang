@@ -37,6 +37,7 @@ type Person struct {
 	Any    *anypb.Any              `protobuf:"bytes,6,opt,name=any,proto3" json:"any,omitempty"`
 	Dv     *wrapperspb.DoubleValue `protobuf:"bytes,7,opt,name=dv,proto3" json:"dv,omitempty"`
 	Region *city.City_Region       `protobuf:"bytes,8,opt,name=region,proto3" json:"region,omitempty"`
+	Child  []string                `protobuf:"bytes,9,rep,name=child,proto3" json:"child,omitempty"`
 	// 不能这样定义
 	//
 	//	map<string, repeated string> testValueAsList = 9;
@@ -139,6 +140,13 @@ func (x *Person) GetRegion() *city.City_Region {
 	return nil
 }
 
+func (x *Person) GetChild() []string {
+	if x != nil {
+		return x.Child
+	}
+	return nil
+}
+
 func (x *Person) GetAction() isPerson_Action {
 	if x != nil {
 		return x.Action
@@ -199,7 +207,7 @@ var File_protobuf_person_person_proto protoreflect.FileDescriptor
 
 const file_protobuf_person_person_proto_rawDesc = "" +
 	"\n" +
-	"\x1cprotobuf/person/person.proto\x12\x06person\x1a\x18protobuf/city/city.proto\x1a\rbiz/biz.proto\x1a\x15openapi/openapi.proto\x1a\x19google/protobuf/any.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xe1\x02\n" +
+	"\x1cprotobuf/person/person.proto\x12\x06person\x1a\x18protobuf/city/city.proto\x1a\rbiz/biz.proto\x1a\x15openapi/openapi.proto\x1a\x19google/protobuf/any.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xf7\x02\n" +
 	"\x06Person\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x10\n" +
 	"\x03age\x18\x02 \x01(\x05R\x03age\x12\x1e\n" +
@@ -209,7 +217,8 @@ const file_protobuf_person_person_proto_rawDesc = "" +
 	"\x03api\x18\x05 \x01(\v2\x10.openapi.OpenApiR\x03api\x12&\n" +
 	"\x03any\x18\x06 \x01(\v2\x14.google.protobuf.AnyR\x03any\x12,\n" +
 	"\x02dv\x18\a \x01(\v2\x1c.google.protobuf.DoubleValueR\x02dv\x12)\n" +
-	"\x06region\x18\b \x01(\v2\x11.city.City.RegionR\x06region\x12\x16\n" +
+	"\x06region\x18\b \x01(\v2\x11.city.City.RegionR\x06region\x12\x14\n" +
+	"\x05child\x18\t \x03(\tR\x05child\x12\x16\n" +
 	"\x05start\x18d \x01(\bH\x00R\x05start\x12\x14\n" +
 	"\x04stop\x18e \x01(\bH\x00R\x04stop\x12\x18\n" +
 	"\x06update\x18f \x01(\tH\x00R\x06updateB\b\n" +

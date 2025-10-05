@@ -20,6 +20,8 @@ message Person {
   google.protobuf.Any any = 6;
   google.protobuf.DoubleValue dv = 7;
   city.City.Region region = 8;
+  repeated string child = 9;
+
   // 不能这样定义
 //  map<string, repeated string> testValueAsList = 9;
   // ✅ oneof 字段：action，表示不同类型的操作
