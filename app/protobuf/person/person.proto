@@ -19,4 +19,13 @@ message Person {
   openapi.OpenApi api = 5;
   google.protobuf.Any any = 6;
   google.protobuf.DoubleValue dv = 7;
+  city.City.Region region = 8;
+  // 不能这样定义
+//  map<string, repeated string> testValueAsList = 9;
+  // ✅ oneof 字段：action，表示不同类型的操作
+  oneof action {
+    bool start = 100;                // 启动操作（布尔值，表示是否启动）
+    bool stop = 101;                 // 停止操作
+    string update = 102;             // 更新操作，附带一个描述
+  }
 }

@@ -8,4 +8,10 @@ package city;
 message City {
   string name = 1;
   string address = 2;
+
+  message Region {
+    int32 id = 1;
+    string name = 2;
+  }
+
 }

@@ -28,14 +28,27 @@ const (
 
 // 定义一个 Person 消息
 type Person struct {
-	state         protoimpl.MessageState  `protogen:"open.v1"`
-	Name          string                  `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Age           int32                   `protobuf:"varint,2,opt,name=age,proto3" json:"age,omitempty"`
-	City          *city.City              `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
-	Biz           *biz.Biz                `protobuf:"bytes,4,opt,name=biz,proto3" json:"biz,omitempty"`
-	Api           *openapi.OpenApi        `protobuf:"bytes,5,opt,name=api,proto3" json:"api,omitempty"`
-	Any           *anypb.Any              `protobuf:"bytes,6,opt,name=any,proto3" json:"any,omitempty"`
-	Dv            *wrapperspb.DoubleValue `protobuf:"bytes,7,opt,name=dv,proto3" json:"dv,omitempty"`
+	state  protoimpl.MessageState  `protogen:"open.v1"`
+	Name   string                  `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Age    int32                   `protobuf:"varint,2,opt,name=age,proto3" json:"age,omitempty"`
+	City   *city.City              `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
+	Biz    *biz.Biz                `protobuf:"bytes,4,opt,name=biz,proto3" json:"biz,omitempty"`
+	Api    *openapi.OpenApi        `protobuf:"bytes,5,opt,name=api,proto3" json:"api,omitempty"`
+	Any    *anypb.Any              `protobuf:"bytes,6,opt,name=any,proto3" json:"any,omitempty"`
+	Dv     *wrapperspb.DoubleValue `protobuf:"bytes,7,opt,name=dv,proto3" json:"dv,omitempty"`
+	Region *city.City_Region       `protobuf:"bytes,8,opt,name=region,proto3" json:"region,omitempty"`
+	// 不能这样定义
+	//
+	//	map<string, repeated string> testValueAsList = 9;
+	//
+	// ✅ oneof 字段：action，表示不同类型的操作
+	//
+	// Types that are valid to be assigned to Action:
+	//
+	//	*Person_Start
+	//	*Person_Stop
+	//	*Person_Update
+	Action        isPerson_Action `protobuf_oneof:"action"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -119,11 +132,74 @@ func (x *Person) GetDv() *wrapperspb.DoubleValue {
 	return nil
 }
 
+func (x *Person) GetRegion() *city.City_Region {
+	if x != nil {
+		return x.Region
+	}
+	return nil
+}
+
+func (x *Person) GetAction() isPerson_Action {
+	if x != nil {
+		return x.Action
+	}
+	return nil
+}
+
+func (x *Person) GetStart() bool {
+	if x != nil {
+		if x, ok := x.Action.(*Person_Start); ok {
+			return x.Start
+		}
+	}
+	return false
+}
+
+func (x *Person) GetStop() bool {
+	if x != nil {
+		if x, ok := x.Action.(*Person_Stop); ok {
+			return x.Stop
+		}
+	}
+	return false
+}
+
+func (x *Person) GetUpdate() string {
+	if x != nil {
+		if x, ok := x.Action.(*Person_Update); ok {
+			return x.Update
+		}
+	}
+	return ""
+}
+
+type isPerson_Action interface {
+	isPerson_Action()
+}
+
+type Person_Start struct {
+	Start bool `protobuf:"varint,100,opt,name=start,proto3,oneof"` // 启动操作（布尔值，表示是否启动）
+}
+
+type Person_Stop struct {
+	Stop bool `protobuf:"varint,101,opt,name=stop,proto3,oneof"` // 停止操作
+}
+
+type Person_Update struct {
+	Update string `protobuf:"bytes,102,opt,name=update,proto3,oneof"` // 更新操作，附带一个描述
+}
+
+func (*Person_Start) isPerson_Action() {}
+
+func (*Person_Stop) isPerson_Action() {}
+
+func (*Person_Update) isPerson_Action() {}
+
 var File_protobuf_person_person_proto protoreflect.FileDescriptor
 
 const file_protobuf_person_person_proto_rawDesc = "" +
 	"\n" +
-	"\x1cprotobuf/person/person.proto\x12\x06person\x1a\x18protobuf/city/city.proto\x1a\rbiz/biz.proto\x1a\x15openapi/openapi.proto\x1a\x19google/protobuf/any.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xe4\x01\n" +
+	"\x1cprotobuf/person/person.proto\x12\x06person\x1a\x18protobuf/city/city.proto\x1a\rbiz/biz.proto\x1a\x15openapi/openapi.proto\x1a\x19google/protobuf/any.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xe1\x02\n" +
 	"\x06Person\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x10\n" +
 	"\x03age\x18\x02 \x01(\x05R\x03age\x12\x1e\n" +
@@ -132,7 +208,12 @@ const file_protobuf_person_person_proto_rawDesc = "" +
 	"\x03biz\x18\x04 \x01(\v2\b.biz.BizR\x03biz\x12\"\n" +
 	"\x03api\x18\x05 \x01(\v2\x10.openapi.OpenApiR\x03api\x12&\n" +
 	"\x03any\x18\x06 \x01(\v2\x14.google.protobuf.AnyR\x03any\x12,\n" +
-	"\x02dv\x18\a \x01(\v2\x1c.google.protobuf.DoubleValueR\x02dvB(Z&mikeian-for-golang/app/protobuf/personb\x06proto3"
+	"\x02dv\x18\a \x01(\v2\x1c.google.protobuf.DoubleValueR\x02dv\x12)\n" +
+	"\x06region\x18\b \x01(\v2\x11.city.City.RegionR\x06region\x12\x16\n" +
+	"\x05start\x18d \x01(\bH\x00R\x05start\x12\x14\n" +
+	"\x04stop\x18e \x01(\bH\x00R\x04stop\x12\x18\n" +
+	"\x06update\x18f \x01(\tH\x00R\x06updateB\b\n" +
+	"\x06actionB(Z&mikeian-for-golang/app/protobuf/personb\x06proto3"
 
 var (
 	file_protobuf_person_person_proto_rawDescOnce sync.Once
@@ -154,6 +235,7 @@ var file_protobuf_person_person_proto_goTypes = []any{
 	(*openapi.OpenApi)(nil),        // 3: openapi.OpenApi
 	(*anypb.Any)(nil),              // 4: google.protobuf.Any
 	(*wrapperspb.DoubleValue)(nil), // 5: google.protobuf.DoubleValue
+	(*city.City_Region)(nil),       // 6: city.City.Region
 }
 var file_protobuf_person_person_proto_depIdxs = []int32{
 	1, // 0: person.Person.city:type_name -> city.City
@@ -161,17 +243,23 @@ var file_protobuf_person_person_proto_depIdxs = []int32{
 	3, // 2: person.Person.api:type_name -> openapi.OpenApi
 	4, // 3: person.Person.any:type_name -> google.protobuf.Any
 	5, // 4: person.Person.dv:type_name -> google.protobuf.DoubleValue
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	6, // 5: person.Person.region:type_name -> city.City.Region
+	6, // [6:6] is the sub-list for method output_type
+	6, // [6:6] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_protobuf_person_person_proto_init() }
 func file_protobuf_person_person_proto_init() {
 	if File_protobuf_person_person_proto != nil {
 		return
+	}
+	file_protobuf_person_person_proto_msgTypes[0].OneofWrappers = []any{
+		(*Person_Start)(nil),
+		(*Person_Stop)(nil),
+		(*Person_Update)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
