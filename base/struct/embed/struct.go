@@ -11,6 +11,17 @@ type Person struct {
 	}
 }
 
+type Head2 struct {
+	shape string
+	size  int
+}
+
+type Person2 struct {
+	name string
+	age  int
+	H2   Head2
+}
+
 func main() {
 
 	fmt.Println("app start ... ")
@@ -27,6 +38,21 @@ func main() {
 	fmt.Println(p)
 	fmt.Println(p.Head.shape)
 	fmt.Println(p.Head.size)
+
+	h2 := Head2{
+		shape: "pointer",
+		size:  20,
+	}
+
+	p2 := Person2{
+		name: "mikeian",
+		age:  23,
+		H2:   h2,
+	}
+
+	fmt.Println(p2)
+	fmt.Println(p2.H2.shape)
+	fmt.Println(p2.H2.size)
 
 	fmt.Println("app complete ...")
 
