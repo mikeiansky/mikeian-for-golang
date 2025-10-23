@@ -14,6 +14,10 @@ func (h *Hello) SayHello() {
 	fmt.Println("hello", h.Msg)
 }
 
+func useInterface(it interface{}) {
+	fmt.Println("use interface", it)
+}
+
 func main() {
 	fmt.Println("app start ... ")
 
@@ -22,6 +26,8 @@ func main() {
 	}
 
 	h.SayHello()
+
+	useInterface(h)
 
 	fmt.Println("app complete ...")
 }
