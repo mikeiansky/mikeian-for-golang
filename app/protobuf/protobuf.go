@@ -19,6 +19,11 @@ func main() {
 		Name:    "shenzhen",
 		Address: "guangdongshen nanshanqu",
 	}
+	region := city.City_Region{
+		Id:   1,
+		Name: "shenzhen",
+	}
+	// 先创建，再使用
 	anyCity, _ := anypb.New(&c)
 	fmt.Println("wrap any city value is ", anyCity)
 	fmt.Println("concrete c:", c)
@@ -26,12 +31,16 @@ func main() {
 	anyCity.UnmarshalTo(uwc)
 	fmt.Println("unwrap any city value2 is ", uwc)
 
+	children := []string{"ian", "Pop"}
+
 	p := person.Person{
-		Name: "mikeian",
-		Age:  20,
-		City: &c,
-		Dv:   wrapperspb.Double(20),
-		Any:  anyCity,
+		Name:   "mikeian",
+		Age:    20,
+		City:   &c,
+		Dv:     wrapperspb.Double(20),
+		Any:    anyCity,
+		Region: &region,
+		Child:  children,
 		//Action: &person.Person_Start{Start: false},
 		//Action: &person.Person_Stop{Stop: true},
 		Action: &person.Person_Update{Update: "tag-001"},
