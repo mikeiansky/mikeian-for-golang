@@ -27,12 +27,14 @@ func main() {
 	fmt.Println("unwrap any city value2 is ", uwc)
 
 	p := person.Person{
-		Name:   "mikeian",
-		Age:    20,
-		City:   &c,
-		Dv:     wrapperspb.Double(20),
-		Any:    anyCity,
-		Action: &person.Person_Start{Start: false},
+		Name: "mikeian",
+		Age:  20,
+		City: &c,
+		Dv:   wrapperspb.Double(20),
+		Any:  anyCity,
+		//Action: &person.Person_Start{Start: false},
+		//Action: &person.Person_Stop{Stop: true},
+		Action: &person.Person_Update{Update: "tag-001"},
 	}
 
 	fmt.Println(p)
