@@ -34,6 +34,7 @@ func main() {
 	fmt.Println("g value is", g)
 	var pg = &g
 	fmt.Println("pg value is", pg)
+	//UseGreetPoint(g)
 	UseGreetPoint(pg)
 
 	fmt.Println("app complete ...")

@@ -5,7 +5,7 @@ import "fmt"
 type Person struct {
 	name string
 	age  int
-	Head struct {
+	H1   struct {
 		shape string
 		size  int
 	}
@@ -29,15 +29,15 @@ func main() {
 	p := Person{
 		name: "mikeian",
 		age:  23,
-		Head: struct {
+		H1: struct {
 			shape string
 			size  int
 		}{shape: "change", size: 20},
 	}
 
 	fmt.Println(p)
-	fmt.Println(p.Head.shape)
-	fmt.Println(p.Head.size)
+	fmt.Println(p.H1.shape)
+	fmt.Println(p.H1.size)
 
 	h2 := Head2{
 		shape: "pointer",
