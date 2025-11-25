@@ -29,8 +29,8 @@ func main() {
 	// 模拟一个函数使用这些值
 	ctx = printUserInfo(ctx)
 
-	// 外部获取新增的数据
-	innerValue := ctx.Value("inner")
+	// 外部获取新增的数据，这里强制转型需要判空
+	innerValue := ctx.Value("inner").(string)
 	fmt.Println("innerValue:", innerValue)
 }
 
