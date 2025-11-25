@@ -10,6 +10,8 @@ type Hello struct {
 	Msg string
 }
 
+// 这样的话hello就是一个Greet类型的接口了
+// func (h Hello) SayHello() {
 func (h *Hello) SayHello() {
 	fmt.Println("hello", h.Msg)
 }
@@ -23,7 +25,7 @@ func UseInterface(g interface{}) {
 	if ok {
 		h.SayHello()
 	} else {
-		fmt.Println("g is not a Greet")
+		fmt.Println("g is not a Greet, g", g)
 	}
 }
 

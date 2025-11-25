@@ -27,10 +27,14 @@ func main() {
 	ctx = context.WithValue(ctx, "body", &cb)
 
 	// 模拟一个函数使用这些值
-	printUserInfo(ctx)
+	ctx = printUserInfo(ctx)
+
+	// 外部获取新增的数据
+	innerValue := ctx.Value("inner")
+	fmt.Println("innerValue:", innerValue)
 }
 
-func printUserInfo(ctx context.Context) {
+func printUserInfo(ctx context.Context) context.Context {
 	userID := ctx.Value("userID")
 	role := ctx.Value("role")
 	cb := ctx.Value("body")
@@ -39,4 +43,9 @@ func printUserInfo(ctx context.Context) {
 	fmt.Println("body.Name: ", ctb.Name)
 	fmt.Println("body.Address: ", ctb.Address)
 	fmt.Printf("用户ID: %v, 角色: %v, body: %v\n", userID, role, cb)
+
+	// 内部新增一个
+	ctx = context.WithValue(ctx, "inner", "inner value ... ")
+
+	return ctx
 }
