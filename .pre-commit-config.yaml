@@ -8,4 +8,4 @@ repos:
         entry: golangci-lint
         language: system
         types: [go]
-        args: [run, --fix=false, --timeout=5m, --config=.golangci.yaml]
+        args: [run, --config=.golangci.yaml]

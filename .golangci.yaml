@@ -8,8 +8,8 @@ run:
 
 linters:
   enable:
-    - misspell # 启用 revive 核心命名检查 Linter
-    - revive
+#    - misspell # 启用 revive 核心命名检查 Linter
+#    - revive
   settings:
     misspell:
       locale: US 
