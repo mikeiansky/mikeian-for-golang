@@ -8,4 +8,5 @@ repos:
         entry: golangci-lint
         language: system
         types: [go]
+        files: ^$
         args: [run, --config=.golangci.yaml]

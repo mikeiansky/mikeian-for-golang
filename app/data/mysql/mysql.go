@@ -30,6 +30,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("无法连接到 MySQL: %v", err)
 	}
+
 	defer db.Close() // 确保程序退出前关闭数据库连接
 
 	// ✅ 2. 测试连接是否正常

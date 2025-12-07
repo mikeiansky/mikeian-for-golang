@@ -31,7 +31,9 @@ func main() {
 	app := App{}
 
 	if err := yaml.Unmarshal(data, &app); err != nil {
-		fmt.Println("analyse yaml config error:", err)
+		// before
+		fmt.Println("[this word is analyse] yaml config error:", err)
+		// after
 	}
 
 	fmt.Println("read app data:", app)
