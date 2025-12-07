@@ -1,7 +1,11 @@
 # .pre-commit-config.yaml
+
 repos:
-  - repo: https://github.com/golangci/golangci-lint
-    rev: v2.7.1  # 请使用最新版本，请看下方说明
+  - repo: local
     hooks:
       - id: golangci-lint
-        args: [run]  # 可选参数
+        name: GolangCI-Lint Check
+        entry: golangci-lint
+        language: system
+        types: [go]
+        args: [run, --fix=false, --timeout=5m]
