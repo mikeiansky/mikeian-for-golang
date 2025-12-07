@@ -47,6 +47,7 @@ func main() {
 	}
 
 	fmt.Println(p.Name)
+	//fmt.Println(p)
 
 	fmt.Println("app complete ... ")
 
