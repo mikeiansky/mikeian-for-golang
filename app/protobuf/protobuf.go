@@ -26,7 +26,7 @@ func main() {
 	// 先创建，再使用
 	anyCity, _ := anypb.New(&c)
 	fmt.Println("wrap any city value is ", anyCity)
-	fmt.Println("concrete c:", c)
+	//fmt.Println("concrete c:", c)
 	uwc := &city.City{}
 	anyCity.UnmarshalTo(uwc)
 	fmt.Println("unwrap any city value2 is ", uwc)
@@ -46,7 +46,7 @@ func main() {
 		Action: &person.Person_Update{Update: "tag-001"},
 	}
 
-	fmt.Println(p)
+	fmt.Println(p.Name)
 
 	fmt.Println("app complete ... ")
 

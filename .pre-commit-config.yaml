@@ -3,10 +3,27 @@
 repos:
   - repo: local
     hooks:
+      - id: go-env-check
+        name: Go Env Check
+        entry: bash
+        language: system
+        pass_filenames: false
+        verbose: true
+        args:
+          - -c
+          - |
+            echo "=== pre-commit GO ENV ==="
+            which go
+            go env GOROOT
+            go env GOPATH
+            go env GOMOD
+            echo "=========================="
+  - repo: local
+    hooks:
       - id: golangci-lint
         name: GolangCI-Lint Check
         entry: golangci-lint
         language: system
         types: [go]
-        files: ^$
+        pass_filenames: false
         args: [run, --config=.golangci.yaml]

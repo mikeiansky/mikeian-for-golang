@@ -7,7 +7,9 @@ import (
 
 func main() {
 	fmt.Println("app start ...")
+	// error
 	ch := make(chan int, 0)
+	// error2
 
 	go func() {
 		time.Sleep(1 * time.Second)
