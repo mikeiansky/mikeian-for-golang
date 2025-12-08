@@ -28,7 +28,10 @@ func main() {
 	fmt.Println("wrap any city value is ", anyCity)
 	//fmt.Println("concrete c:", c)
 	uwc := &city.City{}
-	anyCity.UnmarshalTo(uwc)
+	err := anyCity.UnmarshalTo(uwc)
+	if err != nil {
+		return
+	}
 	fmt.Println("unwrap any city value2 is ", uwc)
 
 	children := []string{"ian", "Pop"}

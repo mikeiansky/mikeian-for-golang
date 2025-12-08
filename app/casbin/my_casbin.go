@@ -17,6 +17,9 @@ func main() {
 		{"bob", "data2", "write"},
 		{"jack", "data3", "read"},
 	})
+	if err != nil {
+		fmt.Println("err ", err)
+	}
 	for index, result := range results {
 		fmt.Println(index, "result", result)
 	}

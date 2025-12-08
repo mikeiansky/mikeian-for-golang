@@ -35,7 +35,10 @@ func main() {
 
 	te := db.Transaction(func(tx *gorm.DB) error {
 		// Migrate the schema
-		tx.AutoMigrate(&Product{})
+		err := tx.AutoMigrate(&Product{})
+		if err != nil {
+			return err
+		}
 
 		tag := "test_004"
 

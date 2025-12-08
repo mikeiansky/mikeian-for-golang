@@ -20,7 +20,12 @@ func main() {
 		fmt.Printf("start producer error: %s", err.Error())
 		return
 	}
-	defer p.Shutdown()
+	defer func(p rocketmq.Producer) {
+		err := p.Shutdown()
+		if err != nil {
+			fmt.Printf("shutdown producer error: %s", err.Error())
+		}
+	}(p)
 
 	msg := &primitive.Message{
 		Topic: "TestTopic",

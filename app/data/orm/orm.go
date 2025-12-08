@@ -30,7 +30,10 @@ func main() {
 
 	fmt.Println("connect database success")
 	// Migrate the schema
-	db.AutoMigrate(&Product{})
+	err2 := db.AutoMigrate(&Product{})
+	if err2 != nil {
+		return
+	}
 
 	// Create
 	db.Create(&Product{Code: "D42", Price: 100})

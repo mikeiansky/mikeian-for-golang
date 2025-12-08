@@ -21,9 +21,12 @@ func worker(ctx context.Context, id int) {
 	}
 }
 
+type ContextKey string
+
 func main() {
 	// 1. 创建一个可取消的 context，并附带一个值（比如 userID）
-	ctx := context.WithValue(context.Background(), "userID", 12345)
+	var userIdKey ContextKey = "UserID"
+	ctx := context.WithValue(context.Background(), userIdKey, 12345)
 
 	// 2. 让这个 c
 	//ontext 支持取消

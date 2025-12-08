@@ -10,7 +10,10 @@ func main() {
 
 	fp := "app/io/write-file/README.md"
 	data := []byte("hello world")
-	os.WriteFile(fp, data, 0777)
+	err := os.WriteFile(fp, data, 0777)
+	if err != nil {
+		return
+	}
 
 	fmt.Println("app complete ... ")
 }

@@ -31,7 +31,12 @@ func main() {
 		log.Fatalf("无法连接到 MySQL: %v", err)
 	}
 
-	defer db.Close() // 确保程序退出前关闭数据库连接
+	defer func(db *sql.DB) {
+		err := db.Close()
+		if err != nil {
+			panic(err)
+		}
+	}(db) // 确保程序退出前关闭数据库连接
 
 	// ✅ 2. 测试连接是否正常
 	err = db.Ping()
@@ -70,7 +75,12 @@ func main() {
 	if err != nil {
 		log.Fatalf("查询数据失败: %v", err)
 	}
-	defer rows.Close()
+	defer func(rows *sql.Rows) {
+		err := rows.Close()
+		if err != nil {
+			panic(err)
+		}
+	}(rows)
 
 	fmt.Println("\n📋 当前所有用户数据：")
 	for rows.Next() {
@@ -100,7 +110,12 @@ func main() {
 	if err != nil {
 		log.Fatalf("再次查询失败: %v", err)
 	}
-	defer rows.Close()
+	defer func(rows *sql.Rows) {
+		err := rows.Close()
+		if err != nil {
+			panic(err)
+		}
+	}(rows)
 
 	fmt.Println("\n📋 更新后的用户数据：")
 	for rows.Next() {

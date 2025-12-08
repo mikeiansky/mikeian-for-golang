@@ -7,11 +7,13 @@ run:
   issues-exit-code: 1
 
 linters:
-  default: none
+#  default: none
   enable:
-#    - misspell # 启用 revive 核心命名检查 Linter
+    - misspell # 启用 revive 核心命名检查 Linter
 #    - revive
     - govet
+  disable:
+    - staticcheck
   settings:
     misspell:
       locale: US 

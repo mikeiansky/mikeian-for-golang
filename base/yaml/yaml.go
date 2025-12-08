@@ -32,7 +32,7 @@ func main() {
 
 	if err := yaml.Unmarshal(data, &app); err != nil {
 		// before 1
-		fmt.Println("[1 this word is analyse] yaml config error:", err)
+		fmt.Println("[1 this word is analyze] yaml config error:", err)
 		// after 2
 	}
 

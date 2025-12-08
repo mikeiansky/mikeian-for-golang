@@ -32,7 +32,12 @@ func main() {
 		fmt.Printf("start consumer error: %s\n", err)
 		return
 	}
-	defer c.Shutdown()
+	defer func(c rocketmq.PushConsumer) {
+		err := c.Shutdown()
+		if err != nil {
+			panic(err)
+		}
+	}(c)
 
 	// 保持程序运行
 	select {}

@@ -15,11 +15,19 @@ func main() {
 	// 连接到 gRPC 服务端
 	//conn, err := grpc.NewClient("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	// other server
-	conn, err := grpc.NewClient("192.168.8.151:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err2 := grpc.NewClient("192.168.8.151:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err2 != nil {
+		panic(err2)
+	}
 	//if err != nil {
 	//	log.Fatalf("did not connect: %v", err)
 	//}
-	defer conn.Close()
+	defer func(conn *grpc.ClientConn) {
+		err := conn.Close()
+		if err != nil {
+			panic(err)
+		}
+	}(conn)
 
 	c := api.NewHelloServiceClient(conn)
 
