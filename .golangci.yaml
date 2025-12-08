@@ -12,8 +12,6 @@ linters:
     - misspell # 启用 revive 核心命名检查 Linter
 #    - revive
     - govet
-  disable:
-    - staticcheck
   settings:
     misspell:
       locale: US 

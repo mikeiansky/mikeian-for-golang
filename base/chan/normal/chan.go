@@ -8,7 +8,7 @@ import (
 func main() {
 	fmt.Println("app start ...")
 	// error
-	ch := make(chan int, 0)
+	ch := make(chan int)
 	// error2
 
 	go func() {
