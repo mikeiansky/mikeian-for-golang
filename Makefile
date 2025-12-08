@@ -48,9 +48,6 @@ check-pre-commit-installed:
 		echo "✅ pre-commit 已安装"; \
 	else \
 		echo "❌ pre-commit 未安装"; \
-		echo "🔧 请通过以下命令安装："; \
-		echo "   pip install pre-commit"; \
-		echo "   或访问：https://pre-commit.com/#installation"; \
 		exit 1; \
 	fi
 
