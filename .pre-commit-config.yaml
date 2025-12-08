@@ -3,32 +3,15 @@
 repos:
   - repo: local
     hooks:
-      - id: go-version-check-via-make
-        name: Go Version Check (via Makefile)
+      - id: check-env-via-make
+        name: Check Env (via Makefile)
         entry: make
         language: system
-        types: [go]
+        types: [] #
         pass_filenames: false
         args:
           - check-env
         verbose: true
-  - repo: local
-    hooks:
-      - id: go-env-check
-        name: Go Env Check
-        entry: bash
-        language: system
-        pass_filenames: false
-        verbose: true
-        args:
-          - -c
-          - |
-            echo "=== pre-commit GO ENV ==="
-            which go
-            go env GOROOT
-            go env GOPATH
-            go env GOMOD
-            echo "=========================="
   - repo: local
     hooks:
       - id: golangci-lint
