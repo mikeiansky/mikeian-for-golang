@@ -3,6 +3,17 @@
 repos:
   - repo: local
     hooks:
+      - id: go-version-check-via-make
+        name: Go Version Check (via Makefile)
+        entry: make
+        language: system
+        types: [go]
+        pass_filenames: false
+        args:
+          - check-env
+        verbose: true
+  - repo: local
+    hooks:
       - id: go-env-check
         name: Go Env Check
         entry: bash
