@@ -13,3 +13,11 @@ func TestHello(t *testing.T) {
 	fmt.Println(nt)
 	fmt.Println("test hello complete ... ")
 }
+
+func TestHello2(t *testing.T) {
+	fmt.Println("test hello2 start ... ")
+	tag := "hello2"
+	nt := lib.CreateObj(tag)
+	fmt.Println(nt)
+	fmt.Println("test hello2 complete ... ")
+}
