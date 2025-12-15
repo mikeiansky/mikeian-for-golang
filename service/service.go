@@ -8,6 +8,6 @@ type Service struct {
 }
 
 func (s *Service) CreateApp(name string) string {
-	fmt.Println("create app (version-001) : ", name)
+	fmt.Println("create app (version-002) : ", name)
 	return "app:" + name
 }
