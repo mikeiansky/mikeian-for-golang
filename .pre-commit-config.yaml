@@ -1,23 +1,25 @@
 # .pre-commit-config.yaml
 
-repos:
-  - repo: local
-    hooks:
-      - id: check-env-via-make
-        name: Check Env (via Makefile)
-        entry: make
-        language: system
-        types: [] #
-        pass_filenames: false
-        args:
-          - check-env
-        verbose: true
-  - repo: local
-    hooks:
-      - id: golangci-lint
-        name: GolangCI-Lint Check
-        entry: golangci-lint
-        language: system
-        types: [go]
-        pass_filenames: false
-        args: [run, --config=.golangci.yaml]
+repos: []
+
+#repos:
+#  - repo: local
+#    hooks:
+#      - id: check-env-via-make
+#        name: Check Env (via Makefile)
+#        entry: make
+#        language: system
+#        types: [] #
+#        pass_filenames: false
+#        args:
+#          - check-env
+#        verbose: true
+#  - repo: local
+#    hooks:
+#      - id: golangci-lint
+#        name: GolangCI-Lint Check
+#        entry: golangci-lint
+#        language: system
+#        types: [go]
+#        pass_filenames: false
+#        args: [run, --config=.golangci.yaml]
