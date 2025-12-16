@@ -13,6 +13,8 @@ func main() {
 	ret := lib.CreateObj(tag)
 	fmt.Println("create obj is", ret)
 
+	lib.UseHelp()
+
 	fmt.Println("normal use lib app complete ... ")
 
 }

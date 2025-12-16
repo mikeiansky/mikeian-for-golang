@@ -55,3 +55,10 @@ check-pre-commit-installed:
 check-env: check-pre-commit-installed check-golangci-lint-version check-go-version
 	@echo "✅ 所有环境检查通过，可以安全执行后续操作"
 
+
+lint:
+	@which golangci-lint > /dev/null || (echo "golangci-lint not found. Run 'make install-tools' from project root." && exit 1)
+	golangci-lint --version
+
+hello: lint
+	echo hello make cmd
