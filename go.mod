@@ -9,6 +9,7 @@ require (
 	github.com/go-sql-driver/mysql v1.9.3
 	github.com/google/wire v0.7.0
 	github.com/redis/go-redis/v9 v9.12.1
+	github.com/shopspring/decimal v1.4.0
 	google.golang.org/grpc v1.77.0
 	google.golang.org/protobuf v1.36.10
 	gopkg.in/yaml.v2 v2.4.0
