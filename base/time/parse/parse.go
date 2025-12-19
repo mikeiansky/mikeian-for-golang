@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func main() {
+func parse01() {
 	timeStr := "2024-01-15 10:30:45"
 	layout := "2006-01-02 15:04:05"
 
@@ -38,4 +38,18 @@ func main() {
 	fmt.Println("\n--- 转换为 UTC 时间 ---")
 	fmt.Printf("UTC 时间: %s\n", utcTime.Format(layout)) // 02:30:45 (比 CST 少 8 小时)
 	fmt.Printf("UTC Location: %s\n", utcTime.Location()) // UTC (UTC+0)
+}
+
+func parse02() {
+	timeStr := "2025-12-20 14:43:22"
+	tp, err := time.Parse("2006-01-02 15:04:05", timeStr)
+	if err != nil {
+		fmt.Println("Error parsing time:", err)
+	}
+	fmt.Println(tp)
+}
+
+func main() {
+	//parse01()
+	parse02()
 }
