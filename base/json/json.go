@@ -28,5 +28,12 @@ func main() {
 	}
 	fmt.Println(person)
 
+	jd, err := json.Marshal(person)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(string(jd))
+	}
+
 	fmt.Println("app complete ...")
 }
