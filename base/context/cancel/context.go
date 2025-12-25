@@ -7,7 +7,7 @@ import (
 )
 
 func UseContext(ctx context.Context) {
-
+	fmt.Println("use context start ... ")
 	cd := <-ctx.Done()
 	fmt.Println("context done", cd)
 
@@ -24,7 +24,7 @@ func main() {
 	ctx, cancel := context.WithCancel(cb)
 
 	go func() {
-		fmt.Println("cancel context")
+		fmt.Println("cancel context start")
 		time.Sleep(1 * time.Second)
 		cancel()
 	}()

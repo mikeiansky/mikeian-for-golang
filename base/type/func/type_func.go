@@ -20,9 +20,40 @@ func executeSimple(t *Tag01, cf *cf) {
 	(*cf)(t)
 }
 
+type ta func(p1 string)
+
+func useTa(ta ta, p1 string) {
+	ta(p1)
+}
+
+type Callback interface {
+	OnCommit()
+	OnRollback()
+	OnComplete()
+}
+
+func doWithCallback(arg string, callback Callback) {
+	fmt.Println("do with arg", arg)
+	if callback != nil {
+		callback.OnCommit()
+		callback.OnComplete()
+	}
+}
+
 func main() {
 
 	fmt.Println("test type func start ... ")
+
+	doWithCallback("callback", nil)
+
+	useTa(func(p1 string) {
+		fmt.Println("ambiguous use", p1)
+	}, "one")
+
+	vp := func(p1 string) {
+		fmt.Println("var use", p1)
+	}
+	useTa(vp, "two")
 
 	t := &Tag01{
 		Name:  "test",
