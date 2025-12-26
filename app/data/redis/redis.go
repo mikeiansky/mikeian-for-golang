@@ -14,9 +14,9 @@ func main() {
 	// ✅ 1. 创建 Redis 客户端（连接到本地 Redis 服务）
 	// 默认 Redis 地址是 localhost:6379，无密码，无 DB 选择
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379", // Redis 服务器地址
-		Password: "",               // 没有密码，默认为空
-		DB:       0,                // 默认使用 DB 0
+		Addr:     "192.168.31.109:6379", // Redis 服务器地址
+		Password: "",                    // 没有密码，默认为空
+		DB:       0,                     // 默认使用 DB 0
 	})
 
 	// ✅ 2. 使用一个 context（通常用 context.Background()）
@@ -29,7 +29,7 @@ func main() {
 	}
 	fmt.Println("✅ Redis 连接成功:", pong)
 
-	// ✅ 4. 写入数据到 Redis（SET key value）
+	//// ✅ 4. 写入数据到 Redis（SET key value）
 	key := "mykey"
 	value := "hello, Redis from Go!"
 
