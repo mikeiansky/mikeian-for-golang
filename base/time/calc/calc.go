@@ -5,9 +5,14 @@ import (
 	"time"
 )
 
-func calculateSecond(t1 time.Time, t2 time.Time) {
-	d := t1.Sub(t2)
-	fmt.Println("calculate second", d.Seconds())
+func calcSecond(from time.Time, to time.Time) int64 {
+	d := to.Sub(from)
+	return int64(d.Seconds())
+}
+
+func calcMilliseconds(from time.Time, to time.Time) int64 {
+	d := to.Sub(from)
+	return d.Milliseconds()
 }
 
 func main() {
@@ -22,6 +27,7 @@ func main() {
 	now := time.Now().UTC()
 	fmt.Println(now)
 
-	calculateSecond(now, et)
+	fmt.Println("seconds diff : ", calcSecond(now, et))
+	fmt.Println("milliseconds diff : ", calcMilliseconds(now, et))
 
 }
