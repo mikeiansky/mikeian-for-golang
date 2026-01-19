@@ -13,24 +13,25 @@ import (
 )
 
 const (
-	Topic = "TestTopic"
+	Topic = "DelayTopic"
 	// Endpoint 填写腾讯云提供的接入地址
-	Endpoint = "127.0.0.1:8081"
-	// AccessKey 添加配置的ak
-	AccessKey = "rocketmq1"
-	// SecretKey 添加配置的sk
-	SecretKey = "123456781"
+	Endpoint  = "127.0.0.1:8081"
+	GroupName = "xxxxxx"
+	Region    = "xxxxxx"
+	AccessKey = "xxxxxx"
+	SecretKey = "xxxxxx"
 )
 
 func main() {
+	// log to console
 	os.Setenv("mq.consoleAppender.enabled", "true")
 	rmq_client.ResetLogger()
-	// In most case, you don't need to create many producers, singleton pattern is more recommended.
+	// new producer instance
 	producer, err := rmq_client.NewProducer(&rmq_client.Config{
 		Endpoint: Endpoint,
 		Credentials: &credentials.SessionCredentials{
-			//AccessKey:    AccessKey,
-			//AccessSecret: SecretKey,
+			AccessKey:    AccessKey,
+			AccessSecret: SecretKey,
 		},
 	},
 		rmq_client.WithTopics(Topic),
@@ -38,25 +39,24 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("step ---- 0001")
 	// start producer
 	err = producer.Start()
 	if err != nil {
 		log.Fatal(err)
 	}
-	// graceful stop producer
+	// gracefule stop producer
 	defer producer.GracefulStop()
-
-	fmt.Println("step ---- 0002")
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 5; i++ {
 		// new a message
 		msg := &rmq_client.Message{
 			Topic: Topic,
-			Body:  []byte("[tag-003] this is a message : " + strconv.Itoa(i)),
+			Body:  []byte("【delay-001】this is a message : " + strconv.Itoa(i)),
 		}
 		// set keys and tag
 		msg.SetKeys("a", "b")
 		msg.SetTag("ab")
+		// set delay timestamp
+		msg.SetDelayTimestamp(time.Now().Add(time.Second * 13))
 		// send message in sync
 		resp, err := producer.Send(context.TODO(), msg)
 		if err != nil {
@@ -68,5 +68,4 @@ func main() {
 		// wait a moment
 		time.Sleep(time.Second * 1)
 	}
-	fmt.Println("step ---- 0002")
 }

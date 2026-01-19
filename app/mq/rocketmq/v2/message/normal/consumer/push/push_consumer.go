@@ -15,7 +15,7 @@ func main() {
 		consumer.WithGroupName("testGroup"),
 	)
 
-	err := c.Subscribe("TestTopic", consumer.MessageSelector{}, func(ctx context.Context, msgs ...*primitive.MessageExt) (consumer.ConsumeResult, error) {
+	err := c.Subscribe("DelayTopic", consumer.MessageSelector{}, func(ctx context.Context, msgs ...*primitive.MessageExt) (consumer.ConsumeResult, error) {
 		for _, msg := range msgs {
 			fmt.Printf("Received message: %s\n", msg.Body)
 		}
