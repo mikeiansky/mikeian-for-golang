@@ -50,13 +50,14 @@ func main() {
 		// new a message
 		msg := &rmq_client.Message{
 			Topic: Topic,
-			Body:  []byte("【delay-001】this is a message : " + strconv.Itoa(i)),
+			Body:  []byte("【delay-002】this is a message : " + strconv.Itoa(i)),
 		}
 		// set keys and tag
 		msg.SetKeys("a", "b")
 		msg.SetTag("ab")
 		// set delay timestamp
-		msg.SetDelayTimestamp(time.Now().Add(time.Second * 13))
+		// 延迟类型消息，必须要有延迟的时间配置信息
+		msg.SetDelayTimestamp(time.Now().Add(time.Second * 0))
 		// send message in sync
 		resp, err := producer.Send(context.TODO(), msg)
 		if err != nil {
