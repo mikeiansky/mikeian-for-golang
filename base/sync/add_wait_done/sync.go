@@ -19,6 +19,7 @@ func main() {
 		time.Sleep(2 * time.Second)
 		ch <- 1
 	}()
+	fmt.Println("after go 1")
 
 	go func() {
 		<-ch
@@ -26,9 +27,11 @@ func main() {
 		//sc.Add(-1)
 		sc.Done()
 	}()
+	fmt.Println("after go 2")
 	time.Sleep(1 * time.Second)
 	//<-ch
 	sc.Wait()
+	fmt.Println("after sc wait")
 	fmt.Println("app complete ...")
 
 }
