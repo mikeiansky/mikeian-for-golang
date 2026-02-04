@@ -6,12 +6,21 @@ import (
 )
 
 type Person struct {
-	Name string `json:"name"`
-	Age  int    `json:"age"`
+	Name    string `json:"name"`
+	Age     int    `json:"age"`
+	Address string `json:"address"`
 }
 
 func main() {
 	fmt.Println("app start ... ")
+
+	person := &Person{
+		Name:    "hello",
+		Age:     20,
+		Address: "shenzhen",
+	}
+
+	fmt.Println(person)
 
 	data := `
 		{
@@ -21,8 +30,7 @@ func main() {
 	`
 	fmt.Println(data)
 
-	person := Person{}
-	err := json.Unmarshal([]byte(data), &person)
+	err := json.Unmarshal([]byte(data), person)
 	if err != nil {
 		fmt.Println(err)
 	}
