@@ -113,7 +113,7 @@ func VerifySignature(data, signatureBase64 string, pub *rsa.PublicKey) bool {
 func main() {
 
 	fmt.Println("sign start ... ")
-	pk, err := LoadPKCS1PrivateKeyFromFile("app/sign/private.key")
+	pk, err := LoadPKCS1PrivateKeyFromFile("app/sign/file/private.key")
 	if err != nil {
 		fmt.Printf("load private key failed: %v\n", err)
 	}
@@ -127,7 +127,7 @@ func main() {
 	}
 	fmt.Println("sign ...", sd)
 
-	pub, err := LoadRSAPublicKeyFromFile("app/sign/public.key")
+	pub, err := LoadRSAPublicKeyFromFile("app/sign/file/public.key")
 	if err != nil {
 		fmt.Printf("load public key failed: %v\n", err)
 	}
