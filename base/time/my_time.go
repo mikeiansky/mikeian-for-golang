@@ -22,4 +22,6 @@ func main() {
 	chinaLocation, _ := time.LoadLocation("Asia/Shanghai")
 	chinaTime := time.Unix(unixTime, 0).In(chinaLocation)
 	fmt.Printf("+08:00 时区: %s\n", chinaTime.Format("2006-01-02T15:04:05.000+08:00"))
+
+	fmt.Println("now ", time.Now())
 }
