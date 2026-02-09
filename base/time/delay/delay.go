@@ -15,4 +15,10 @@ func main() {
 	delayMilliseconds := CalcMilliseconds(now, now.Add(time.Hour*24))
 	delayTime := time.Now().Add(time.Millisecond * time.Duration(delayMilliseconds))
 	fmt.Println("delay time : ", delayTime)
+	fmt.Println("now", time.Now().UTC())
+	var age int8
+	age = 1
+	fmt.Println("age : ", age)
+	fmt.Println("age == 1", age != 1)
+
 }
