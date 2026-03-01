@@ -39,4 +39,8 @@ func main() {
 	nd.Valid = false
 	fmt.Println(nd.Decimal)
 	fmt.Println(nd)
+
+	zv, _ := decimal.NewFromString("-100")
+	fmt.Println(zv)
+	fmt.Println(zv.Abs())
 }
