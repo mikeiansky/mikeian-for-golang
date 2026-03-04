@@ -5,9 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"math/rand"
 	"mikeian-for-golang/app/asynq-demo/task"
-	"time"
 
 	"github.com/hibiken/asynq"
 )
@@ -24,19 +22,9 @@ func main() {
 	log.Println("📤 Asynq client started. Sending tasks...")
 
 	// 发送不同类型的任务
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 3; i++ {
 		// 随机延迟，模拟不同时间发送
-		time.Sleep(time.Duration(rand.Intn(500)) * time.Millisecond)
-
-		// 交替发送到不同队列
-		switch i % 3 {
-		case 0:
-			sendEmailTask(client, i)
-		case 1:
-			sendEmailTask(client, i)
-		case 2:
-			sendEmailTask(client, i)
-		}
+		sendEmailTask(client, i)
 	}
 
 	log.Println("✅ All tasks sent! Check Asynqmon at http://localhost:8080")
@@ -44,7 +32,7 @@ func main() {
 
 func sendEmailTask(client *asynq.Client, index int) {
 	payload := &task.EmailDeliveryPayload{
-		UserID:     index + 1000,
+		UserID:     index + 9080,
 		Email:      fmt.Sprintf("user%d@example.com", index),
 		TemplateID: "welcome_email",
 	}
@@ -52,13 +40,22 @@ func sendEmailTask(client *asynq.Client, index int) {
 	task := asynq.NewTask(task.TypeEmailDelivery, pd)
 
 	// 发送到 critical 队列，优先级最高
-	info, err := client.Enqueue(task, asynq.Queue("critical"), asynq.MaxRetry(3))
+	//info, err := client.Enqueue(task, asynq.Queue("critical"), asynq.MaxRetry(3))
+
+	//tt := time.Now().Add(time.Second * 5)
+	//pa := asynq.ProcessAt(tt)
+	//fmt.Printf("task %v , at time : %v \n", task, tt)
+
+	//info, err := client.EnqueueContext(context.Background(), task, pa)
+	//info, err := client.Enqueue(task, asynq.Queue("default"))
+	info, err := client.Enqueue(task, asynq.Queue("critical"))
 	if err != nil {
 		log.Printf("❌ Failed to enqueue email task: %v", err)
 		return
 	}
 
 	log.Printf("📧 Enqueued email task: ID=%s Queue=%s", info.ID, info.Queue)
+
 }
 
 //

@@ -22,11 +22,11 @@ func handleEmailDeliveryTask(ctx context.Context, t *asynq.Task) error {
 	//if err := t.UnmarshalPayload(&p); err != nil {
 	//	return err
 	//}
-	log.Printf("📧 Processing email delivery: %s", p.String())
+	log.Printf("📧 Processing email delivery: %s, time %v", p.String(), time.Now())
 	// 模拟耗时操作
-	time.Sleep(2 * time.Second)
-	log.Printf("✅ Email sent to %s", p.Email)
-	fmt.Println("handleEmailDeliveryTask")
+	//time.Sleep(2 * time.Second)
+	//log.Printf("✅ Email sent to %s", p.Email)
+	//fmt.Println("handleEmailDeliveryTask ", p)
 	return nil
 }
 
@@ -48,12 +48,11 @@ func handleImageResizeTask(ctx context.Context, t *asynq.Task) error {
 func main() {
 	// 1. 创建 Redis 连接
 	redisOpt := asynq.RedisClientOpt{Addr: "localhost:6379"}
-
 	// 2. 创建 Asynq Server
 	srv := asynq.NewServer(
 		redisOpt,
 		asynq.Config{
-			Concurrency: 1, // 并发 worker 数量
+			Concurrency: 10, // 并发 worker 数量
 			Queues: map[string]int{
 				"critical": 6, // 高优先级队列
 				"default":  3, // 默认队列
