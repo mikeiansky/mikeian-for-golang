@@ -8,10 +8,12 @@ import (
 )
 
 func main() {
-	uuid, err := uuid.NewRandom()
+	id, err := uuid.NewRandom()
 	if err != nil {
 		log.Fatal(err)
 	}
-	uuidString := uuid.String()
+	uuidString := id.String()
 	fmt.Println(uuidString)
+
+	//uuid.NewUUID()
 }

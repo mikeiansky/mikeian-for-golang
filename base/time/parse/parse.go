@@ -32,11 +32,11 @@ func parse01() {
 	fmt.Printf("原始字符串: %s\n", timeStr)
 
 	fmt.Println("\n--- 解析为北京时间 (CST) ---")
-	fmt.Printf("CST 时间: %s\n", cstTime.Format(layout))   // 10:30:45
+	fmt.Printf("CST 时间: %s\n", cstTime.Format(layout)) // 10:30:45
 	fmt.Printf("CST Location: %s\n", cstTime.Location()) // Asia/Shanghai (UTC+8)
 
 	fmt.Println("\n--- 转换为 UTC 时间 ---")
-	fmt.Printf("UTC 时间: %s\n", utcTime.Format(layout))   // 02:30:45 (比 CST 少 8 小时)
+	fmt.Printf("UTC 时间: %s\n", utcTime.Format(layout)) // 02:30:45 (比 CST 少 8 小时)
 	fmt.Printf("UTC Location: %s\n", utcTime.Location()) // UTC (UTC+0)
 }
 
@@ -50,6 +50,7 @@ func parse02() {
 }
 
 func parse03() {
+	// 2026-03-07T03:32:37
 	tt1 := "2026-03-06T11:34:21"
 	t1, err := time.Parse(time.RFC3339, tt1)
 	if err != nil {
@@ -72,8 +73,45 @@ func parse03() {
 	fmt.Println(t3)
 }
 
+func parse04() {
+	t1 := "2026-03-16 12:12:12"
+	t2 := "2026-03-16"
+	pt1, _ := time.Parse("2006-01-02 15:04:05", t1)
+	pt2, _ := time.Parse("2006-01-02 15:04:05", t2)
+	fmt.Println(pt1)
+	fmt.Println(pt2)
+	fmt.Println(pt1.UTC())
+	fmt.Println(time.Now())
+	fmt.Println(time.Now().UTC())
+}
+
+func parse05() {
+	at := int64(1772854579000)
+	realPayTime := time.Unix(at/1000, 0).UTC()
+	fmt.Println(realPayTime)
+}
+
+func parse06() {
+	rt := "2026-03-17T07:59:59+08:00"
+	t, _ := time.Parse(time.RFC3339, rt)
+	fmt.Println(t)
+
+	ct := t.Format(time.DateTime)
+	fmt.Println(ct)
+}
+
+func TimeToDateTime(t time.Time) string {
+	if t.IsZero() {
+		return ""
+	}
+	return t.Format(time.DateTime)
+}
+
 func main() {
 	//parse01()
 	//parse02()
-	parse03()
+	//parse03()
+	//parse04()
+	//parse05()
+	parse06()
 }
