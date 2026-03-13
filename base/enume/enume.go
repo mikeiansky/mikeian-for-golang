@@ -22,4 +22,12 @@ func main() {
 	s3 := TransactionStatus("CREATED")
 	fmt.Println(s3)
 
+	s4 := "CREATED"
+	ts4 := TransactionStatus(s4)
+	fmt.Println(ts4 == s3)
+	fmt.Println(ts4 == s1)
+	if "CREATED" == TransactionCreated {
+
+	}
+
 }
