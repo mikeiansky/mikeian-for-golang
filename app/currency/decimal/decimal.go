@@ -43,4 +43,5 @@ func main() {
 	zv, _ := decimal.NewFromString("-100")
 	fmt.Println(zv)
 	fmt.Println(zv.Abs())
+	fmt.Println(zv.String())
 }

@@ -12,4 +12,10 @@ func main() {
 	//iv := int64(str)
 	fmt.Println(iv)
 
+	var ia interface{}
+	ia = iv
+	fmt.Println(ia)
+	//fmt.Println(string(iv))
+	fmt.Println(fmt.Sprintf("%v", ia))
+
 }

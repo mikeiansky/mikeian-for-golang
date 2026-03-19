@@ -32,11 +32,11 @@ func parse01() {
 	fmt.Printf("原始字符串: %s\n", timeStr)
 
 	fmt.Println("\n--- 解析为北京时间 (CST) ---")
-	fmt.Printf("CST 时间: %s\n", cstTime.Format(layout)) // 10:30:45
+	fmt.Printf("CST 时间: %s\n", cstTime.Format(layout))   // 10:30:45
 	fmt.Printf("CST Location: %s\n", cstTime.Location()) // Asia/Shanghai (UTC+8)
 
 	fmt.Println("\n--- 转换为 UTC 时间 ---")
-	fmt.Printf("UTC 时间: %s\n", utcTime.Format(layout)) // 02:30:45 (比 CST 少 8 小时)
+	fmt.Printf("UTC 时间: %s\n", utcTime.Format(layout))   // 02:30:45 (比 CST 少 8 小时)
 	fmt.Printf("UTC Location: %s\n", utcTime.Location()) // UTC (UTC+0)
 }
 
