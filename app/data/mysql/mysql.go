@@ -26,7 +26,7 @@ func main() {
 	userName := "root"
 	password := "123456"
 	dbName := "test_db"
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True", userName, password, ipAddress, port, dbName)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", userName, password, ipAddress, port, dbName)
 	//dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True", userName, password, ipAddress, port, dbName)
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
@@ -63,7 +63,7 @@ func main() {
 	fmt.Println(time.Now())
 	// ✅ 4. 插入数据（INSERT）
 	insertSQL := `INSERT INTO time_test (create_time, create_at) VALUES (?, ?)`
-	ret, err := db.Exec(insertSQL, time.Now().UTC().Format(time.DateTime), time.Now().UTC().Format(time.DateTime))
+	ret, err := db.Exec(insertSQL, time.Now(), time.Now())
 	if err != nil {
 		log.Fatalf("插入数据失败: %v", err)
 	}
@@ -74,7 +74,8 @@ func main() {
 		createAt   time.Time
 	)
 	id, _ := ret.LastInsertId()
-	selectSQL := fmt.Sprintf(`SELECT create_time, create_at FROM time_test WHERE id = %v`, id)
+	fmt.Println(id)
+	selectSQL := fmt.Sprintf(`SELECT create_time, create_at FROM time_test WHERE id = %v`, 36)
 	err = db.QueryRow(selectSQL).Scan(&createTime, &createAt)
 	if err != nil {
 		log.Fatalf("读取数据失败: %v", err)
@@ -85,8 +86,10 @@ func main() {
 	fmt.Println("读取到的时间 (本地时区):", createTime.Format("2006-01-02 15:04:05"))
 	fmt.Println("createTime 时区信息:", createTime.Location().String())
 	fmt.Println("createTime:", createTime)
+	fmt.Println("createTime.UTC():", createTime.UTC())
 	fmt.Println("createAt 时区信息:", createAt.Location().String())
 	fmt.Println("createAt:", createAt)
+	fmt.Println("createAt.UTC():", createAt.UTC())
 
 	//// 获取插入的 ID（可选）
 	//id, _ := result.LastInsertId()
