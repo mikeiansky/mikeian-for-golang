@@ -107,11 +107,21 @@ func TimeToDateTime(t time.Time) string {
 	return t.Format(time.DateTime)
 }
 
+func parse07() {
+	str := "2026-03-27T05:19:20"
+	ret, err := time.Parse("2006-01-02T15:04:05", str)
+	if err != nil {
+		fmt.Println("Error parsing time:", err)
+	}
+	fmt.Println(ret)
+}
+
 func main() {
 	//parse01()
 	//parse02()
 	//parse03()
 	//parse04()
 	//parse05()
-	parse06()
+	//parse06()
+	parse07()
 }
