@@ -63,7 +63,7 @@ func main() {
 	fmt.Println(time.Now())
 	// ✅ 4. 插入数据（INSERT）
 	insertSQL := `INSERT INTO time_test (create_time, create_at) VALUES (?, ?)`
-	ret, err := db.Exec(insertSQL, time.Now(), time.Now())
+	ret, err := db.Exec(insertSQL, time.Now().UTC(), time.Now())
 	if err != nil {
 		log.Fatalf("插入数据失败: %v", err)
 	}
@@ -75,7 +75,7 @@ func main() {
 	)
 	id, _ := ret.LastInsertId()
 	fmt.Println(id)
-	selectSQL := fmt.Sprintf(`SELECT create_time, create_at FROM time_test WHERE id = %v`, 36)
+	selectSQL := fmt.Sprintf(`SELECT create_time, create_at FROM time_test WHERE id = %v`, id)
 	err = db.QueryRow(selectSQL).Scan(&createTime, &createAt)
 	if err != nil {
 		log.Fatalf("读取数据失败: %v", err)
