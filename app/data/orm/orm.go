@@ -16,11 +16,11 @@ type Product struct {
 
 func main() {
 
-	ipAddress := "127.0.0.1"
+	ipAddress := "192.168.31.109"
 	port := "3306"
 	userName := "root"
 	password := "123456"
-	dbName := "study"
+	dbName := "test_db"
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True", userName, password, ipAddress, port, dbName)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
@@ -36,7 +36,9 @@ func main() {
 	}
 
 	// Create
-	db.Create(&Product{Code: "D42", Price: 100})
+	p1 := &Product{Code: "D42", Price: 100}
+	db.Create(p1)
+	fmt.Println(p1, "p1.ID:", p1.ID)
 
 	//// Read
 	var product Product
