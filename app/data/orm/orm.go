@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 
 	_ "github.com/go-sql-driver/mysql" // MySQL 驱动（仅导入，用于注册驱动）
@@ -42,8 +43,16 @@ func main() {
 
 	//// Read
 	var product2 Product
-	db.First(&product2, 1) // find product with integer primary key
+	ret := db.First(&product2, 1000) // find product with integer primary key
 	fmt.Println("find product2:", product2)
+	fmt.Println("ret.Statement:", ret.Statement)
+	fmt.Println("ret.RowsAffected:", ret.RowsAffected)
+	if ret.Error != nil {
+		fmt.Println("ret.Error:", ret.Error)
+	}
+	if errors.Is(ret.Error, gorm.ErrRecordNotFound) {
+		fmt.Println("gorm.ErrRecordNotFound:", err)
+	}
 
 	//db.First(&product, "code = ?", "F42") // find product with code D42
 	//
