@@ -15,7 +15,7 @@ func UpdateCopyBookTitle(b Book, nt string) {
 	b.Title = nt
 }
 
-func main() {
+func normal01() {
 	fmt.Println("app start ... ")
 
 	b := Book{
@@ -32,4 +32,23 @@ func main() {
 	fmt.Println("after update copy book", b)
 
 	fmt.Println("app complete ... ")
+}
+
+type orderStatus string
+
+type OrderParam struct {
+	s orderStatus
+}
+
+func normal02() {
+	fmt.Println("app start ... ")
+	o := OrderParam{}
+	fmt.Println("init order param", o.s, "end")
+	fmt.Println("after init order param", o.s == "")
+
+}
+
+func main() {
+	//normal01()
+	normal02()
 }
