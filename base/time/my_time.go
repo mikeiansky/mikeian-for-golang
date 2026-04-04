@@ -35,7 +35,19 @@ func t2() {
 	fmt.Println(nowUtc.Unix())
 }
 
+func t3() {
+	st := time.UnixMilli(0)
+	fmt.Println(st)
+	fmt.Println(st.UTC())
+
+	ux := time.Now().UnixMilli()
+	at := ux/1000 + 0
+	att := time.UnixMilli(at)
+	fmt.Println(att)
+}
+
 func main() {
 	//t1()
-	t2()
+	//t2()
+	t3()
 }
