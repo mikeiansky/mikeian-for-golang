@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func main() {
+func t1() {
 	// 同一个 Unix 时间戳，不同时区显示
 	unixTime := int64(1724156611)
 
@@ -24,4 +24,18 @@ func main() {
 	fmt.Printf("+08:00 时区: %s\n", chinaTime.Format("2006-01-02T15:04:05.000+08:00"))
 
 	fmt.Println("now ", time.Now())
+}
+
+func t2() {
+	now := time.Now()
+	nowUtc := now.UTC()
+	fmt.Println(now)
+	fmt.Println(nowUtc)
+	fmt.Println(now.Unix())
+	fmt.Println(nowUtc.Unix())
+}
+
+func main() {
+	//t1()
+	t2()
 }
