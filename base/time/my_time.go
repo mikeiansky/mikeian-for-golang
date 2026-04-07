@@ -49,5 +49,8 @@ func t3() {
 func main() {
 	//t1()
 	//t2()
-	t3()
+	//t3()
+	// 1775529693248
+	// 1775529741014
+	fmt.Println(time.Now().UnixMilli())
 }
