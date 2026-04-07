@@ -28,6 +28,11 @@ func changeInterface(data interface{}) interface{} {
 	return data
 }
 
+// test - 001
+// test - 002
+// test - 003
+// test - 004
+
 func main() {
 	p := Person{
 		Name: "wen",
