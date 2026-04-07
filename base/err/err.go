@@ -8,8 +8,7 @@ import (
 var e1 = errors.New("e1 ===> ")
 var e2 = errors.New("e2 ===> ")
 
-func main() {
-
+func err_001() {
 	var er error
 	if er == nil {
 		fmt.Println("hello world")
@@ -23,5 +22,14 @@ func main() {
 	fmt.Println(e3)
 	fmt.Println(errors.Is(e3, e2))
 	fmt.Println(errors.Is(e3, e1))
+}
 
+func err_002() {
+	fmt.Println(e1.Error())
+	fmt.Println(e2.Error())
+}
+
+func main() {
+	//err_001()
+	err_002()
 }
