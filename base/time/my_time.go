@@ -46,6 +46,27 @@ func t3() {
 	fmt.Println(att)
 }
 
+// ParsePaidTime .
+func ParsePaidTime(s string) (time.Time, error) {
+	ret, err := time.Parse("2006-01-02T15:04:05", s)
+	if err != nil {
+		ret, err = time.Parse(time.DateTime, s)
+		if err != nil {
+			return time.Time{}, err
+		}
+	}
+	return ret, nil
+}
+
+func t4() {
+	test := "2026-04-08T11:10:28"
+	t, err := ParsePaidTime(test)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(t)
+}
+
 func main() {
 	//t1()
 	//t2()
@@ -53,5 +74,7 @@ func main() {
 	// 1775529693248
 	// 1775529741014
 	// 1775549173425
-	fmt.Println(time.Now().UnixMilli())
+	//fmt.Println(time.Now().UnixMilli())
+
+	t4()
 }
