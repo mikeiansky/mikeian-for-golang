@@ -67,6 +67,12 @@ func t4() {
 	fmt.Println(t)
 }
 
+func t5() {
+	paidTime := time.Unix(0/1000, 0).UTC()
+	fmt.Println(paidTime)
+
+}
+
 func main() {
 	//t1()
 	//t2()
@@ -76,5 +82,6 @@ func main() {
 	// 1775549173425
 	//fmt.Println(time.Now().UnixMilli())
 
-	t4()
+	//t4()
+	t5()
 }
