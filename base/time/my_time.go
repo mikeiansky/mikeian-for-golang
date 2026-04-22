@@ -68,8 +68,15 @@ func t4() {
 }
 
 func t5() {
-	paidTime := time.Unix(0/1000, 0).UTC()
-	fmt.Println(paidTime)
+	//paidTime := time.Unix(0/1000, 0).UTC()
+	//fmt.Println(paidTime)
+
+	t, err := time.Parse(time.RFC3339, "2022-04-26")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(t)
 
 }
 
