@@ -71,12 +71,15 @@ func t5() {
 	//paidTime := time.Unix(0/1000, 0).UTC()
 	//fmt.Println(paidTime)
 
-	t, err := time.Parse(time.RFC3339, "2022-04-26")
+	t, err := time.Parse(time.RFC3339, "2026-05-12T08:57:17Z")
 	if err != nil {
 		fmt.Println(err)
-		return
+		//return
 	}
 	fmt.Println(t)
+
+	now := time.Now()
+	fmt.Println(now.Format(time.RFC3339))
 
 }
 
