@@ -20,6 +20,11 @@ func main() {
 	fmt.Println("CNY minor unit", getMinorUnit("CNY"))
 	fmt.Println("USD minor unit", getMinorUnit("USD"))
 	fmt.Println("JPY minor unit", getMinorUnit("JPY"))
+	raw := "CCbbaadAcdAdba"
+	tr := strings.ToUpper(raw)
+	fmt.Println(tr)
+	lr := strings.ToLower(raw)
+	fmt.Println(lr)
 
 	header := map[string]string{
 		"Content-Type": "application/x-www-form-urlencoded",
