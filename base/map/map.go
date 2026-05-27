@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+	"time"
 )
 
 var minorUnits = map[string]int{
@@ -37,5 +38,8 @@ func main() {
 	header2 := map[string]string{}
 	json.Unmarshal(ret, &header2)
 	fmt.Println(header2)
+
+	fmt.Println(time.Now().Unix())
+	fmt.Println(time.Now().UnixMilli())
 
 }
