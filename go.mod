@@ -9,11 +9,11 @@ require (
 	github.com/casbin/casbin/v2 v2.128.0
 	github.com/go-redsync/redsync/v4 v4.16.0
 	github.com/go-sql-driver/mysql v1.9.3
-	github.com/google/uuid v1.6.0
 	github.com/google/wire v0.7.0
 	github.com/hashicorp/consul/api v1.33.2
 	github.com/hibiken/asynq v0.26.0
 	github.com/joho/godotenv v1.5.1
+	github.com/razorpay/ifsc/v2 v2.0.59
 	github.com/redis/go-redis/v9 v9.17.3
 	github.com/shopspring/decimal v1.4.0
 	google.golang.org/grpc v1.77.0
@@ -44,6 +44,7 @@ require (
 	github.com/golang/groupcache v0.0.0-20241129210726-2c02b8208cf8 // indirect
 	github.com/golang/mock v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
+	github.com/google/uuid v1.6.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.26.3 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect

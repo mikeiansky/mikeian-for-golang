@@ -360,6 +360,8 @@ github.com/prometheus/common v0.9.1/go.mod h1:yhUN8i9wzaXS3w1O07YhxHEBxD+W35wd8b
 github.com/prometheus/procfs v0.0.0-20181005140218-185b4288413d/go.mod h1:c3At6R/oaqEKCNdg8wHV1ftS6bRYblBhIjjI8uT2IGk=
 github.com/prometheus/procfs v0.0.2/go.mod h1:TjEm7ze935MbeOT/UhFTIMYKhuLP4wbCsTZCD3I8kEA=
 github.com/prometheus/procfs v0.0.8/go.mod h1:7Qr8sr6344vo1JqZ6HhLceV9o3AJ1Ff+GxbHq6oeK9A=
+github.com/razorpay/ifsc/v2 v2.0.59 h1:oNUbY/C9nVB50xaffitPzwqaaLJblnVjdjy0bRAacAg=
+github.com/razorpay/ifsc/v2 v2.0.59/go.mod h1:LjlKH4Xzyv4FaZrzVa6AsnmT/lW7lORe5ZYF+kWeqgo=
 github.com/redis/go-redis/v9 v9.17.3 h1:fN29NdNrE17KttK5Ndf20buqfDZwGNgoUr9qjl1DQx4=
 github.com/redis/go-redis/v9 v9.17.3/go.mod h1:u410H11HMLoB+TP67dz8rL9s6QW2j76l0//kSOd3370=
 github.com/redis/rueidis v1.0.71 h1:pODtnAR5GAB7j4ekhldZ29HKOxe4Hph0GTDGk1ayEQY=
