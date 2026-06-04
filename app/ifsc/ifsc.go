@@ -10,16 +10,16 @@ import (
 
 func main() {
 
-	fmt.Println(ifsc.Validate("KKBK0000261")) // Returns true
-	fmt.Println(ifsc.Validate("BOTM0XEEMRA")) // Returns false
+	fmt.Println(ifsc.Validate("IOBA0003123")) // Returns true
+	fmt.Println(ifsc.Validate("ZSBL0000331")) // Returns false
 
 	ifsc.ValidateBankCode("PUNB") // Returns true
 	ifsc.ValidateBankCode("ABCD") // Returns false
 
 	code, _ := ifsc.GetBankName("PUNB") // Returns "Punjab National Bank", nil
 	fmt.Println(code)
-	ifsc.GetBankName("ABCD")    // Returns "", errors.New(invalid bank code)
-	ifsc.GetBankName(ifsc.HDFC) // Returns "HDFC Bank", nil
+	fmt.Println(ifsc.GetBankName("ZSBL")) // Returns "", errors.New(invalid bank code)
+	ifsc.GetBankName(ifsc.HDFC)           // Returns "HDFC Bank", nil
 
 	ifsc.GetBankDetails("PUNB")
 	// or
