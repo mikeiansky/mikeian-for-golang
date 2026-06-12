@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+	"time"
+)
 
 // chapter3/sources/evaluation_order_1.go
 var (
@@ -17,4 +21,8 @@ func f() int {
 
 func main() {
 	fmt.Println(a, b, c, d)
+	errors.New("test")
+	ret := fmt.Sprintf("%d", time.Now().UnixMilli())
+	fmt.Println(ret)
+
 }
