@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"strings"
+
+	"github.com/google/uuid"
 )
 
 func createSql(ids []int64) string {
@@ -20,14 +22,15 @@ func createSql(ids []int64) string {
 }
 
 func main() {
-	//id, err := uuid.NewRandom()
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
-	//uuidString := id.String()
-	//fmt.Println(uuidString)
+	uuid.NewRandom()
+	id, err := uuid.NewRandom()
+	if err != nil {
+		//log.Fatal(err)
+	}
+	uuidString := id.String()
+	fmt.Println(uuidString)
 
-	//uuid.NewUUID()
-	ret := createSql([]int64{})
-	fmt.Println(ret)
+	uuid.NewUUID()
+	//ret := createSql([]int64{})
+	//fmt.Println(ret)
 }
